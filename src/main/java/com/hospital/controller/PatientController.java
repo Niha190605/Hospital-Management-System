@@ -11,6 +11,7 @@ import com.hospital.service.PatientService;
 import jakarta.validation.Valid;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/patients")
 public class PatientController {
 

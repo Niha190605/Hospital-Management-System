@@ -9,6 +9,7 @@ import com.hospital.model.Appointment;
 import com.hospital.service.AppointmentService;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/appointments")
 public class AppointmentController {
 
