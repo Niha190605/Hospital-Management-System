@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import com.hospital.model.Doctor;
 import com.hospital.service.DoctorService;
 
-@RestController
 @CrossOrigin("*")
+@RestController
 @RequestMapping("/doctors")
 public class DoctorController {
 
