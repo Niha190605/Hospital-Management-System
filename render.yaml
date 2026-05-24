@@ -1,6 +1,6 @@
 services:
 
-* type: web
+  type: web
   name: hospital-management-system
   env: docker
   plan: free
