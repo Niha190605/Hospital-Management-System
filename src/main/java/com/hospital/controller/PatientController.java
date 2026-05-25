@@ -10,7 +10,6 @@ import com.hospital.service.PatientService;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/patients")
 public class PatientController {

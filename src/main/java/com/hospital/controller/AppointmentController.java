@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.hospital.model.Appointment;
 import com.hospital.service.AppointmentService;
 
-@CrossOrigin("*")
+
 @RestController
 @RequestMapping("/appointments")
 public class AppointmentController {

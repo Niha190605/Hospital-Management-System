@@ -1,5 +1,4 @@
-const BASE_URL = "";
-
+const BASE_URL = window.location.origin;
 
 /* ================= PATIENT APIs ================= */
 
@@ -35,7 +34,8 @@ async function addPatient() {
 
         } else {
 
-            alert("Failed to add patient");
+            const errorText = await response.text();
+            alert(errorText);
         }
 
     } catch(error){
@@ -125,7 +125,8 @@ async function addDoctor() {
 
         } else {
 
-            alert("Failed to add doctor");
+            const errorText = await response.text();
+            alert(errorText);
         }
 
     } catch(error){
@@ -227,7 +228,8 @@ async function addAppointment() {
 
         } else {
 
-            alert("Failed to add appointment");
+            const errorText = await response.text();
+            alert(errorText);
         }
 
     } catch(error){
