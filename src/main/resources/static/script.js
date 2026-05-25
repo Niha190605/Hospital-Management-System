@@ -2,36 +2,48 @@ const BASE_URL =
 "https://hospital-management-system-42po.onrender.com";
 
 
-
 /* ================= PATIENT APIs ================= */
 
 async function addPatient() {
 
-    const patient = {
+    try {
 
-        name: document.getElementById("patientName").value,
+        const patient = {
 
-        age: parseInt(
-            document.getElementById("patientAge").value
-        )
-    };
+            name: document.getElementById("patientName").value,
 
-    const response = await fetch(`${BASE_URL}/patients`, {
+            age: parseInt(
+                document.getElementById("patientAge").value
+            )
+        };
 
-        method: "POST",
+        const response = await fetch(`${BASE_URL}/patients`, {
 
-        headers: {
-            "Content-Type": "application/json"
-        },
+            method: "POST",
 
-        body: JSON.stringify(patient)
-    });
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-    if(response.ok){
+            body: JSON.stringify(patient)
+        });
 
-        alert("Patient Added Successfully");
+        if(response.ok){
 
-        loadPatients();
+            alert("Patient Added Successfully");
+
+            loadPatients();
+
+        } else {
+
+            alert("Failed to add patient");
+        }
+
+    } catch(error){
+
+        console.error(error);
+
+        alert("Server Error");
     }
 }
 
@@ -39,28 +51,35 @@ async function addPatient() {
 
 async function loadPatients() {
 
-    const response =
-        await fetch(`${BASE_URL}/patients`);
+    try {
 
-    const patients = await response.json();
+        const response =
+            await fetch(`${BASE_URL}/patients`);
 
-    const patientList =
-        document.getElementById("patientList");
+        const patients = await response.json();
 
-    patientList.innerHTML = "";
+        const patientList =
+            document.getElementById("patientList");
 
-    patients.forEach(patient => {
+        patientList.innerHTML = "";
 
-        patientList.innerHTML += `
-            <li>
-                ID: ${patient.id}
-                |
-                ${patient.name}
-                |
-                Age: ${patient.age}
-            </li>
-        `;
-    });
+        patients.forEach(patient => {
+
+            patientList.innerHTML += `
+                <li>
+                    ID: ${patient.id}
+                    |
+                    ${patient.name}
+                    |
+                    Age: ${patient.age}
+                </li>
+            `;
+        });
+
+    } catch(error){
+
+        console.error(error);
+    }
 }
 
 
@@ -69,39 +88,52 @@ async function loadPatients() {
 
 async function addDoctor() {
 
-    const doctor = {
+    try {
 
-        name:
-            document.getElementById("doctorName").value,
+        const doctor = {
 
-        specialization:
-            document.getElementById(
-                "doctorSpecialization"
-            ).value,
+            name:
+                document.getElementById("doctorName").value,
 
-        experience: parseInt(
-            document.getElementById(
-                "doctorExperience"
-            ).value
-        )
-    };
+            specialization:
+                document.getElementById(
+                    "doctorSpecialization"
+                ).value,
 
-    const response = await fetch(`${BASE_URL}/doctors`, {
+            experience: parseInt(
+                document.getElementById(
+                    "doctorExperience"
+                ).value
+            )
+        };
 
-        method: "POST",
+        const response = await fetch(`${BASE_URL}/doctors`, {
 
-        headers: {
-            "Content-Type": "application/json"
-        },
+            method: "POST",
 
-        body: JSON.stringify(doctor)
-    });
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-    if(response.ok){
+            body: JSON.stringify(doctor)
+        });
 
-        alert("Doctor Added Successfully");
+        if(response.ok){
 
-        loadDoctors();
+            alert("Doctor Added Successfully");
+
+            loadDoctors();
+
+        } else {
+
+            alert("Failed to add doctor");
+        }
+
+    } catch(error){
+
+        console.error(error);
+
+        alert("Server Error");
     }
 }
 
@@ -109,30 +141,37 @@ async function addDoctor() {
 
 async function loadDoctors() {
 
-    const response =
-        await fetch(`${BASE_URL}/doctors`);
+    try {
 
-    const doctors = await response.json();
+        const response =
+            await fetch(`${BASE_URL}/doctors`);
 
-    const doctorList =
-        document.getElementById("doctorList");
+        const doctors = await response.json();
 
-    doctorList.innerHTML = "";
+        const doctorList =
+            document.getElementById("doctorList");
 
-    doctors.forEach(doctor => {
+        doctorList.innerHTML = "";
 
-        doctorList.innerHTML += `
-            <li>
-                ID: ${doctor.id}
-                |
-                ${doctor.name}
-                |
-                ${doctor.specialization}
-                |
-                Experience: ${doctor.experience}
-            </li>
-        `;
-    });
+        doctors.forEach(doctor => {
+
+            doctorList.innerHTML += `
+                <li>
+                    ID: ${doctor.id}
+                    |
+                    ${doctor.name}
+                    |
+                    ${doctor.specialization}
+                    |
+                    Experience: ${doctor.experience}
+                </li>
+            `;
+        });
+
+    } catch(error){
+
+        console.error(error);
+    }
 }
 
 
@@ -141,49 +180,62 @@ async function loadDoctors() {
 
 async function addAppointment() {
 
-    const appointment = {
+    try {
 
-        appointmentDate:
-            document.getElementById(
-                "appointmentDate"
-            ).value,
+        const appointment = {
 
-        patient: {
-            id: parseInt(
+            appointmentDate:
                 document.getElementById(
-                    "appointmentPatientId"
-                ).value
-            )
-        },
+                    "appointmentDate"
+                ).value,
 
-        doctor: {
-            id: parseInt(
-                document.getElementById(
-                    "appointmentDoctorId"
-                ).value
-            )
-        }
-    };
-
-    const response = await fetch(
-        `${BASE_URL}/appointments`,
-        {
-
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
+            patient: {
+                id: parseInt(
+                    document.getElementById(
+                        "appointmentPatientId"
+                    ).value
+                )
             },
 
-            body: JSON.stringify(appointment)
+            doctor: {
+                id: parseInt(
+                    document.getElementById(
+                        "appointmentDoctorId"
+                    ).value
+                )
+            }
+        };
+
+        const response = await fetch(
+            `${BASE_URL}/appointments`,
+            {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(appointment)
+            }
+        );
+
+        if(response.ok){
+
+            alert("Appointment Added Successfully");
+
+            loadAppointments();
+
+        } else {
+
+            alert("Failed to add appointment");
         }
-    );
 
-    if(response.ok){
+    } catch(error){
 
-        alert("Appointment Added Successfully");
+        console.error(error);
 
-        loadAppointments();
+        alert("Server Error");
     }
 }
 
@@ -191,28 +243,35 @@ async function addAppointment() {
 
 async function loadAppointments() {
 
-    const response =
-        await fetch(`${BASE_URL}/appointments`);
+    try {
 
-    const appointments = await response.json();
+        const response =
+            await fetch(`${BASE_URL}/appointments`);
 
-    const appointmentList =
-        document.getElementById("appointmentList");
+        const appointments = await response.json();
 
-    appointmentList.innerHTML = "";
+        const appointmentList =
+            document.getElementById("appointmentList");
 
-    appointments.forEach(app => {
+        appointmentList.innerHTML = "";
 
-        appointmentList.innerHTML += `
-            <li>
-                Appointment ID: ${app.id}
-                |
-                Date: ${app.appointmentDate}
-                |
-                Patient ID: ${app.patient.id}
-                |
-                Doctor ID: ${app.doctor.id}
-            </li>
-        `;
-    });
+        appointments.forEach(app => {
+
+            appointmentList.innerHTML += `
+                <li>
+                    Appointment ID: ${app.id}
+                    |
+                    Date: ${app.appointmentDate}
+                    |
+                    Patient ID: ${app.patient.id}
+                    |
+                    Doctor ID: ${app.doctor.id}
+                </li>
+            `;
+        });
+
+    } catch(error){
+
+        console.error(error);
+    }
 }
