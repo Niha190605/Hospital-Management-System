@@ -1,5 +1,4 @@
-const BASE_URL = "https://hospital-management-system-42po.onrender.com";
-
+const BASE_URL = window.location.origin;
 
 /* ================= PATIENT APIs ================= */
 
@@ -8,59 +7,43 @@ async function addPatient() {
     try {
 
         const patient = {
-
             name: document.getElementById("patientName").value,
-
-            age: parseInt(
-                document.getElementById("patientAge").value
-            )
+            age: parseInt(document.getElementById("patientAge").value)
         };
 
         const response = await fetch(`${BASE_URL}/patients`, {
-
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
-
             body: JSON.stringify(patient)
         });
 
-        if(response.ok){
-
-            alert("Patient Added Successfully");
-
-            loadPatients();
-
-        } else {
-
-            const text = await response.text();
-
-            alert(text);
+        if (!response.ok) {
+            throw new Error("Failed to add patient");
         }
 
-    } catch(error){
+        alert("Patient Added Successfully");
+
+        loadPatients();
+
+    } catch (error) {
 
         console.error(error);
 
-        alert(error);
+        alert(error.message);
     }
 }
-
-
 
 async function loadPatients() {
 
     try {
 
-        const response =
-            await fetch(`${BASE_URL}/patients`);
+        const response = await fetch(`${BASE_URL}/patients`);
 
         const patients = await response.json();
 
-        const patientList =
-            document.getElementById("patientList");
+        const patientList = document.getElementById("patientList");
 
         patientList.innerHTML = "";
 
@@ -77,13 +60,11 @@ async function loadPatients() {
             `;
         });
 
-    } catch(error){
+    } catch (error) {
 
         console.error(error);
     }
 }
-
-
 
 /* ================= DOCTOR APIs ================= */
 
@@ -92,67 +73,44 @@ async function addDoctor() {
     try {
 
         const doctor = {
-
-            name:
-                document.getElementById("doctorName").value,
-
-            specialization:
-                document.getElementById(
-                    "doctorSpecialization"
-                ).value,
-
-            experience: parseInt(
-                document.getElementById(
-                    "doctorExperience"
-                ).value
-            )
+            name: document.getElementById("doctorName").value,
+            specialization: document.getElementById("doctorSpecialization").value,
+            experience: parseInt(document.getElementById("doctorExperience").value)
         };
 
         const response = await fetch(`${BASE_URL}/doctors`, {
-
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
-
             body: JSON.stringify(doctor)
         });
 
-        if(response.ok){
-
-            alert("Doctor Added Successfully");
-
-            loadDoctors();
-
-        } else {
-
-            const text = await response.text();
-
-            alert(text);
+        if (!response.ok) {
+            throw new Error("Failed to add doctor");
         }
 
-    } catch(error){
+        alert("Doctor Added Successfully");
+
+        loadDoctors();
+
+    } catch (error) {
 
         console.error(error);
 
-        alert(error);
+        alert(error.message);
     }
 }
-
-
 
 async function loadDoctors() {
 
     try {
 
-        const response =
-            await fetch(`${BASE_URL}/doctors`);
+        const response = await fetch(`${BASE_URL}/doctors`);
 
         const doctors = await response.json();
 
-        const doctorList =
-            document.getElementById("doctorList");
+        const doctorList = document.getElementById("doctorList");
 
         doctorList.innerHTML = "";
 
@@ -171,13 +129,11 @@ async function loadDoctors() {
             `;
         });
 
-    } catch(error){
+    } catch (error) {
 
         console.error(error);
     }
 }
-
-
 
 /* ================= APPOINTMENT APIs ================= */
 
@@ -188,63 +144,47 @@ async function addAppointment() {
         const appointment = {
 
             appointmentDate:
-                document.getElementById(
-                    "appointmentDate"
-                ).value,
+                document.getElementById("appointmentDate").value,
 
             patient: {
                 id: parseInt(
-                    document.getElementById(
-                        "appointmentPatientId"
-                    ).value
+                    document.getElementById("appointmentPatientId").value
                 )
             },
 
             doctor: {
                 id: parseInt(
-                    document.getElementById(
-                        "appointmentDoctorId"
-                    ).value
+                    document.getElementById("appointmentDoctorId").value
                 )
             }
         };
 
-        const response = await fetch(
-            `${BASE_URL}/appointments`,
-            {
+        const response = await fetch(`${BASE_URL}/appointments`, {
 
-                method: "POST",
+            method: "POST",
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-                body: JSON.stringify(appointment)
-            }
-        );
+            body: JSON.stringify(appointment)
+        });
 
-        if(response.ok){
-
-            alert("Appointment Added Successfully");
-
-            loadAppointments();
-
-        } else {
-
-            const text = await response.text();
-
-            alert(text);
+        if (!response.ok) {
+            throw new Error("Failed to add appointment");
         }
 
-    } catch(error){
+        alert("Appointment Added Successfully");
+
+        loadAppointments();
+
+    } catch (error) {
 
         console.error(error);
 
-        alert(error);
+        alert(error.message);
     }
 }
-
-
 
 async function loadAppointments() {
 
@@ -275,7 +215,7 @@ async function loadAppointments() {
             `;
         });
 
-    } catch(error){
+    } catch (error) {
 
         console.error(error);
     }

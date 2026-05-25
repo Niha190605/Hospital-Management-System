@@ -10,6 +10,7 @@ import com.hospital.service.DoctorService;
 
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/doctors")
 public class DoctorController {
 
