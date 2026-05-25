@@ -1,55 +1,30 @@
 const BASE_URL = "https://hospital-management-system-42po.onrender.com";
 
 
-// LOGIN
-function login() {
+// ================= PATIENT =================
 
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    if(username === "admin" && password === "admin123") {
-
-        document.getElementById("mainApp").style.display = "block";
-        document.getElementById("loginMessage").innerText = "Login Successful";
-
-    } else {
-
-        document.getElementById("loginMessage").innerText = "Invalid Credentials";
-    }
-}
-
-
-// ADD PATIENT
 async function addPatient() {
 
-    const name = document.getElementById("patientName").value;
-    const age = document.getElementById("patientAge").value;
+    const patient = {
+        name: document.getElementById("patientName").value,
+        age: document.getElementById("patientAge").value
+    };
 
-    const response = await fetch(`${BASE_URL}/patients`, {
-
+    await fetch(`${BASE_URL}/patients`, {
         method: "POST",
-
         headers: {
             "Content-Type": "application/json"
         },
-
-        body: JSON.stringify({
-            name,
-            age
-        })
+        body: JSON.stringify(patient)
     });
 
-    if(response.ok) {
-        alert("Patient Added Successfully");
-        loadPatients();
-    }
+    alert("Patient Added");
 }
 
-
-// LOAD PATIENTS
 async function loadPatients() {
 
     const response = await fetch(`${BASE_URL}/patients`);
+
     const patients = await response.json();
 
     const list = document.getElementById("patientList");
@@ -58,52 +33,43 @@ async function loadPatients() {
 
     patients.forEach(patient => {
 
-        const li = document.createElement("li");
-
-        li.innerText =
-            `ID: ${patient.id} | ${patient.name} | Age: ${patient.age}`;
-
-        list.appendChild(li);
+        list.innerHTML += `
+            <li>
+                ID: ${patient.id} |
+                ${patient.name} |
+                Age: ${patient.age}
+            </li>
+        `;
     });
 }
 
 
-// ADD DOCTOR
+
+// ================= DOCTOR =================
+
 async function addDoctor() {
 
-    const name = document.getElementById("doctorName").value;
-    const specialization =
-        document.getElementById("doctorSpecialization").value;
+    const doctor = {
+        name: document.getElementById("doctorName").value,
+        specialization: document.getElementById("doctorSpecialization").value,
+        experience: document.getElementById("doctorExperience").value
+    };
 
-    const experience =
-        document.getElementById("doctorExperience").value;
-
-    const response = await fetch(`${BASE_URL}/doctors`, {
-
+    await fetch(`${BASE_URL}/doctors`, {
         method: "POST",
-
         headers: {
             "Content-Type": "application/json"
         },
-
-        body: JSON.stringify({
-            name,
-            specialization,
-            experience
-        })
+        body: JSON.stringify(doctor)
     });
 
-    if(response.ok) {
-        alert("Doctor Added Successfully");
-        loadDoctors();
-    }
+    alert("Doctor Added");
 }
 
-
-// LOAD DOCTORS
 async function loadDoctors() {
 
     const response = await fetch(`${BASE_URL}/doctors`);
+
     const doctors = await response.json();
 
     const list = document.getElementById("doctorList");
@@ -112,78 +78,63 @@ async function loadDoctors() {
 
     doctors.forEach(doctor => {
 
-        const li = document.createElement("li");
-
-        li.innerText =
-            `ID: ${doctor.id} | ${doctor.name} | ${doctor.specialization} | Experience: ${doctor.experience}`;
-
-        list.appendChild(li);
+        list.innerHTML += `
+            <li>
+                ID: ${doctor.id} |
+                ${doctor.name} |
+                ${doctor.specialization} |
+                Experience: ${doctor.experience} years
+            </li>
+        `;
     });
 }
 
 
-// ADD APPOINTMENT
+
+// ================= APPOINTMENT =================
+
 async function addAppointment() {
 
-    const appointmentDate =
-        document.getElementById("appointmentDate").value;
+    const appointment = {
+        appointmentDate: document.getElementById("appointmentDate").value,
+        patient: {
+            id: document.getElementById("patientId").value
+        },
+        doctor: {
+            id: document.getElementById("doctorId").value
+        }
+    };
 
-    const patientId =
-        document.getElementById("appointmentPatientId").value;
-
-    const doctorId =
-        document.getElementById("appointmentDoctorId").value;
-
-    const response = await fetch(`${BASE_URL}/appointments`, {
-
+    await fetch(`${BASE_URL}/appointments`, {
         method: "POST",
-
         headers: {
             "Content-Type": "application/json"
         },
-
-        body: JSON.stringify({
-
-            appointmentDate,
-
-            patient: {
-                id: patientId
-            },
-
-            doctor: {
-                id: doctorId
-            }
-        })
+        body: JSON.stringify(appointment)
     });
 
-    if(response.ok) {
-
-        alert("Appointment Added Successfully");
-        loadAppointments();
-    }
+    alert("Appointment Added");
 }
 
-
-// LOAD APPOINTMENTS
 async function loadAppointments() {
 
     const response = await fetch(`${BASE_URL}/appointments`);
+
     const appointments = await response.json();
 
     const list = document.getElementById("appointmentList");
 
     list.innerHTML = "";
 
-    appointments.forEach(appointment => {
+    appointments.forEach(app => {
 
-        const li = document.createElement("li");
-
-        li.innerText =
-            `Appointment ID: ${appointment.id}
-             | Date: ${appointment.appointmentDate}
-             | Patient: ${appointment.patient?.name}
-             | Doctor: ${appointment.doctor?.name}`;
-
-        list.appendChild(li);
+        list.innerHTML += `
+            <li>
+                Appointment ID: ${app.id} |
+                Date: ${app.appointmentDate} |
+                Patient ID: ${app.patient.id} |
+                Doctor ID: ${app.doctor.id}
+            </li>
+        `;
     });
 }

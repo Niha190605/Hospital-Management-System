@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Hospital Management System</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,65 +10,48 @@
 
     <h1>Hospital Management System</h1>
 
-    <!-- LOGIN -->
+    <!-- PATIENT SECTION -->
     <div class="card">
-        <h2>Login</h2>
+        <h2>Add Patient</h2>
 
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
+        <input type="text" id="patientName" placeholder="Patient Name">
+        <input type="number" id="patientAge" placeholder="Patient Age">
 
-        <button onclick="login()">Login</button>
+        <button onclick="addPatient()">Add Patient</button>
 
-        <p id="loginMessage"></p>
+        <button onclick="loadPatients()">Load Patients</button>
+
+        <ul id="patientList"></ul>
     </div>
 
-    <!-- MAIN APP -->
-    <div id="mainApp" style="display:none;">
+    <!-- DOCTOR SECTION -->
+    <div class="card">
+        <h2>Add Doctor</h2>
 
-        <!-- PATIENT -->
-        <div class="card">
-            <h2>Add Patient</h2>
+        <input type="text" id="doctorName" placeholder="Doctor Name">
+        <input type="text" id="doctorSpecialization" placeholder="Specialization">
+        <input type="number" id="doctorExperience" placeholder="Experience">
 
-            <input type="text" id="patientName" placeholder="Patient Name">
-            <input type="number" id="patientAge" placeholder="Patient Age">
+        <button onclick="addDoctor()">Add Doctor</button>
 
-            <button onclick="addPatient()">Add Patient</button>
+        <button onclick="loadDoctors()">Load Doctors</button>
 
-            <button onclick="loadPatients()">Load Patients</button>
+        <ul id="doctorList"></ul>
+    </div>
 
-            <ul id="patientList"></ul>
-        </div>
+    <!-- APPOINTMENT SECTION -->
+    <div class="card">
+        <h2>Add Appointment</h2>
 
-        <!-- DOCTOR -->
-        <div class="card">
-            <h2>Add Doctor</h2>
+        <input type="date" id="appointmentDate">
+        <input type="number" id="patientId" placeholder="Patient ID">
+        <input type="number" id="doctorId" placeholder="Doctor ID">
 
-            <input type="text" id="doctorName" placeholder="Doctor Name">
-            <input type="text" id="doctorSpecialization" placeholder="Specialization">
-            <input type="number" id="doctorExperience" placeholder="Experience">
+        <button onclick="addAppointment()">Add Appointment</button>
 
-            <button onclick="addDoctor()">Add Doctor</button>
+        <button onclick="loadAppointments()">Load Appointments</button>
 
-            <button onclick="loadDoctors()">Load Doctors</button>
-
-            <ul id="doctorList"></ul>
-        </div>
-
-        <!-- APPOINTMENT -->
-        <div class="card">
-            <h2>Add Appointment</h2>
-
-            <input type="date" id="appointmentDate">
-            <input type="number" id="appointmentPatientId" placeholder="Patient ID">
-            <input type="number" id="appointmentDoctorId" placeholder="Doctor ID">
-
-            <button onclick="addAppointment()">Add Appointment</button>
-
-            <button onclick="loadAppointments()">Load Appointments</button>
-
-            <ul id="appointmentList"></ul>
-        </div>
-
+        <ul id="appointmentList"></ul>
     </div>
 
 </div>
