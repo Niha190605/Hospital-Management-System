@@ -12,9 +12,11 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "name")
     @NotBlank(message = "Name cannot be empty")
     private String name;
 
+    @Column(name = "age")
     @Min(value = 1, message = "Age must be greater than 0")
     private int age;
 

@@ -12,19 +12,25 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "name")
     @NotBlank(message = "Doctor name cannot be empty")
     private String name;
 
+    @Column(name = "specialization")
     @NotBlank(message = "Specialization cannot be empty")
     private String specialization;
 
+    @Column(name = "experience")
     @Min(value = 0, message = "Experience cannot be negative")
     private int experience;
 
     public Doctor() {
     }
 
-    public Doctor(int id, String name, String specialization, int experience) {
+    public Doctor(int id, String name,
+            String specialization,
+            int experience) {
+
         this.id = id;
         this.name = name;
         this.specialization = specialization;

@@ -12,14 +12,15 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "appointment_date")
     private LocalDate appointmentDate;
 
-    // MANY appointments can belong to ONE patient
+    // MANY appointments belong to ONE patient
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    // MANY appointments can belong to ONE doctor
+    // MANY appointments belong to ONE doctor
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
