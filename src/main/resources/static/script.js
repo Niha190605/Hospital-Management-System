@@ -1,5 +1,4 @@
-const BASE_URL =
-"https://hospital-management-system-42po.onrender.com";
+const BASE_URL = "";
 
 
 /* ================= PATIENT APIs ================= */
