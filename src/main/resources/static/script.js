@@ -1,5 +1,5 @@
 const BASE_URL =
-"http://localhost:8080";
+"https://hospital-management-system-42po.onrender.com";
 
 
 
