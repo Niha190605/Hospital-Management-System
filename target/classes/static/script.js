@@ -1,4 +1,5 @@
-const BASE_URL = window.location.origin;
+const BASE_URL = "https://hospital-management-system-42po.onrender.com";
+
 
 /* ================= PATIENT APIs ================= */
 
@@ -34,15 +35,16 @@ async function addPatient() {
 
         } else {
 
-            const errorText = await response.text();
-            alert(errorText);
+            const text = await response.text();
+
+            alert(text);
         }
 
     } catch(error){
 
         console.error(error);
 
-        alert("Server Error");
+        alert(error);
     }
 }
 
@@ -125,15 +127,16 @@ async function addDoctor() {
 
         } else {
 
-            const errorText = await response.text();
-            alert(errorText);
+            const text = await response.text();
+
+            alert(text);
         }
 
     } catch(error){
 
         console.error(error);
 
-        alert("Server Error");
+        alert(error);
     }
 }
 
@@ -228,15 +231,16 @@ async function addAppointment() {
 
         } else {
 
-            const errorText = await response.text();
-            alert(errorText);
+            const text = await response.text();
+
+            alert(text);
         }
 
     } catch(error){
 
         console.error(error);
 
-        alert("Server Error");
+        alert(error);
     }
 }
 
